@@ -1,2 +1,2 @@
 # p2-iproject-server
-Individual Portfolio Server Dita
+Individual Portfolio Server
