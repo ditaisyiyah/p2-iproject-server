@@ -5,5 +5,12 @@
     "database": "cosmos",
     "host": "localhost",
     "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "cosmos-test",
+    "host": "localhost",
+    "dialect": "postgres"
   }
 }
