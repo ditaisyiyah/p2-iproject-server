@@ -11,6 +11,10 @@ function errorHandler(err, req, res, next) {
       code = 400;
       message = err.errors[0].message;
       break;
+    case 'AlreadyRegistered':
+      code = 400;
+      message = 'You Already Registered';
+      break;
     case 'FailedNews':
       code = 400;
       message = 'Failed To Load News';
