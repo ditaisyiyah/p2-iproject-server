@@ -6,8 +6,8 @@ class userController{
   static async register(req, res, next){
     try {
       const { email, password } = req.body;
-      const isEmailAlreadyExist = User.findOne({ where: { email } })
-      if(isEmailAlreadyExist) throw ({ name: 'AlreadyRegistered' })
+      const isAlreadyRegistered = await User.findOne({ where: { email } })
+      if(isAlreadyRegistered) throw ({ name: 'AlreadyRegistered' })
 
       const user = await User.create({ email, password })
 
