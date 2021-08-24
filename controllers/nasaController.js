@@ -7,8 +7,10 @@ class nasaController{
       const url = req.url;
       // console.log('--------------apod-', url);
       const response = await fetch(url);
-      const pictures = await response.json();
-      const { copyright, date, explanation, hdurl, title } = pictures;
+      const picture = await response.json();
+      if(picture.status === 'error') throw ({ name: 'FailedPicture' });
+
+      const { copyright, date, explanation, hdurl, title } = picture;
 
       res.status(200).json({ copyright, date, explanation, hdurl, title })
 
@@ -23,11 +25,11 @@ class nasaController{
       const url = req.url;
       // console.log('--------------aneo-', url);
       const todayDate = req.todayDate;
-      const response = await axios.get(url);
-      const { 
-        element_count: count, 
-        near_earth_objects: asteroidList 
-      } = response.data
+      const response = await fetch(url);
+      const asteroids = await response.json();
+      if(asteroids.status === 'error') throw ({ name: 'FailedAsteroid' });
+
+      const { element_count: count, near_earth_objects: asteroidList } = asteroids
       const asteroid = getClosestAsteroid(asteroidList, todayDate)
       
       res.status(200).json({ count, ...asteroid })
