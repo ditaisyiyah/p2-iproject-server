@@ -1,5 +1,6 @@
 const { checkPassword } = require('../helpers/bcrypt');
 const { generateToken } = require('../helpers/jwt');
+const transporter = require('../helpers/nodemailer');
 const { User } = require('../models');
 
 class userController{
@@ -15,8 +16,22 @@ class userController{
         email: user.email, 
         password: user.password 
       });
-      res.status(201).json({ access_token });
 
+      transporter.sendMail({
+        from: '"UNIVERSE CODE" <no-reply@universecode.com>',
+        to: user.email,
+        subject: "An Asteroid Close Approach You! ",
+        text: "Hello world?", // plain text body
+        html: "<b>Hello world?</b>", // html body
+      }, (err, info) => {
+        // console.log('----------err send email', err, info);
+        if(err) {
+          throw ({ name: 'FailedSendEmail' })
+        }
+      });
+
+      res.status(201).json({ access_token });
+      
     } catch (err) {
       next(err)
     }
@@ -35,8 +50,22 @@ class userController{
         email: user.email, 
         password: user.password 
       });
-      res.status(200).json({ access_token });
 
+      transporter.sendMail({
+        from: '"UNIVERSE CODE" <no-reply@universecode.com>',
+        to: user.email,
+        subject: "An Asteroid Close Approach You! ",
+        text: "Hello world?", // plain text body
+        html: "<b>Hello world?</b>", // html body
+      }, (err, info) => {
+        // console.log('----------err send email', err, info);
+        if(err) {
+          throw ({ name: 'FailedSendEmail' })
+        }
+      });
+      
+      res.status(200).json({ access_token });
+      
     } catch (err) {
       next(err)
     }
