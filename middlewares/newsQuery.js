@@ -1,12 +1,27 @@
-const newsURL = '';
+const newsURL = 'https://newsapi.org/v2/everything?apiKey=';
 const newsAPIKey = process.env.NEWS_API_KEY;
 
-// Query Paramaters from NEWS API:
-//
+// Query Paramaters from NEWS API (everything):
+// search result default 100, and max 100 for non-paid key
+// language, SETTED en
+// sortBy, SETTED relevancy
+// pageSize, SETTED 10, default 20
+// qInTitle, search keyword for title
+// page, default 1 and start at 1
 
 function newsQuery(req, res, next) {
   try {
+    console.log('-----news query middleware', req.query);
+    const { keywords, page } = req.query;
 
+    let query = '';
+    query += `&language=en`
+    query += `&sortBy=relevancy`
+    query += `&pageSize=10`
+    if(keywords) query += `&qInTitle=${keywords}`;
+    if(page) query += `&page=${page}`;
+
+    req.url = `${newsURL}${newsAPIKey}${query}`;
     
     next();
 
