@@ -14,6 +14,13 @@ function errorHandler(err, req, res, next) {
     case 'FailedNews':
       code = 400;
       message = 'Failed To Load News';
+    case 'InvalidToken':
+      code = 401;
+      message = 'Invalid Token';
+      break;
+    case 'InvalidLogin':
+      code = 401;
+      message = 'Invalid Email and/or Password';
       break;
     default:
       code = 500;
