@@ -1,4 +1,4 @@
-const axios = require("axios"); // TODO: pake fetch API aja
+const fetch = require('node-fetch');
 const getClosestAsteroid = require("../helpers/aneo");
 
 class nasaController{
@@ -6,8 +6,9 @@ class nasaController{
     try {
       const url = req.url;
       // console.log('--------------apod-', url);
-      const response = await axios.get(url);
-      const { copyright, date, explanation, hdurl, title } = response.data;
+      const response = await fetch(url);
+      const pictures = await response.json();
+      const { copyright, date, explanation, hdurl, title } = pictures;
 
       res.status(200).json({ copyright, date, explanation, hdurl, title })
 
