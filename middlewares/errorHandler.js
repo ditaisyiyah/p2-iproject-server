@@ -11,6 +11,14 @@ function errorHandler(err, req, res, next) {
       code = 400;
       message = err.errors[0].message;
       break;
+    case 'InvalidToken':
+      code = 401;
+      message = 'Invalid Token';
+      break;
+    case 'InvalidLogin':
+      code = 401;
+      message = 'Invalid Email and/or Password';
+      break;
     default:
       code = 500;
       message = 'Internal Server Error';
