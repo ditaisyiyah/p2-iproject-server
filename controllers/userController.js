@@ -6,6 +6,9 @@ class userController{
   static async register(req, res, next){
     try {
       const { email, password } = req.body;
+      const isEmailAlreadyExist = User.findOne({ where: { email } })
+      if(isEmailAlreadyExist) throw ({ name: 'AlreadyRegistered' })
+
       const user = await User.create({ email, password })
 
       const access_token = generateToken({ 
@@ -22,7 +25,7 @@ class userController{
   static async login(req, res, next){
     try {
       const { email, password } = req.body;
-      const user = await User.findOne({ email });
+      const user = await User.findOne({ where: { email } });
       if(!user) throw ({ name: 'InvalidLogin' });
 
       const isPasswordValid = checkPassword(password, user.password);
