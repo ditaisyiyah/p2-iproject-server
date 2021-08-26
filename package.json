@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "jest --detectOpenHandles --forceExit --testTimeout=20000",
+    "dev": "NODE_ENV=development npx nodemon app.js",
     "listen": "nodemon bin/www"
   },
   "repository": {
