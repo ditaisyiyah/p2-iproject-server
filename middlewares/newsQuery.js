@@ -6,7 +6,7 @@ const newsAPIKey = process.env.NEWS_API_KEY;
 // language, SETTED en
 // sortBy, SETTED relevancy
 // pageSize, SETTED 10, default 20
-// qInTitle, search keyword for title
+// q, search keyword
 // page, default 1 and start at 1
 
 function newsQuery(req, res, next) {
@@ -18,7 +18,7 @@ function newsQuery(req, res, next) {
     query += `&language=en`
     query += `&sortBy=relevancy`
     query += `&pageSize=10`
-    if(keywords) query += `&qInTitle=${keywords}`;
+    if(keywords) query += `&q=${keywords}`;
     if(page) query += `&page=${page}`;
 
     req.url = `${newsURL}${newsAPIKey}${query}`;
