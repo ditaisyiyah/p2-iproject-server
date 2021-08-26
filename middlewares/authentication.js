@@ -7,8 +7,8 @@ async function authentication(req, res, next) {
     if(!payload) throw ({ name: 'InvalidToken' })
 
     req.user = {
+      id: payload.id,
       email: payload.email,
-      password: payload.password
     }
 
     next();
