@@ -13,19 +13,35 @@ function errorHandler(err, req, res, next) {
       break;
     case 'AlreadyRegistered':
       code = 400;
-      message = 'You Already Registered';
+      message = 'You already registered';
+      break;
+    case 'FailedPicture':
+      code = 400;
+      message = 'Failed to get astronomy picture data';
+      break;
+    case 'FailedAsteroid':
+      code = 400;
+      message = 'Failed to get asteroid data';
+      break;
+    case 'FailedNews':
+      code = 400;
+      message = 'Failed to get news data';
+      break;
+    case 'FailedSendEmail':
+      code = 400;
+      message = 'Ensure Your Email Is Valid/Active';
       break;
     case 'InvalidToken':
       code = 401;
-      message = 'Invalid Token';
+      message = 'Invalid token';
       break;
     case 'InvalidLogin':
       code = 401;
-      message = 'Invalid Email and/or Password';
+      message = 'Invalid email and/or password';
       break;
     default:
       code = 500;
-      message = 'Internal Server Error';
+      message = 'Internal server error';
       break;
   }
 

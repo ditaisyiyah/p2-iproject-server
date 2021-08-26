@@ -27,7 +27,6 @@ class userController{
         // console.log('----------err send email', err, info);
         if(err) {
           throw ({ name: 'FailedSendEmail' }) // TODO cari library utk auth email
-        }
       });
 
       res.status(201).json({ access_token });
