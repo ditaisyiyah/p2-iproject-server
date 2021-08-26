@@ -5,14 +5,31 @@ class nasaController{
   static async fetchPicture(req, res, next){
     try {
       const url = req.url;
-      // console.log('--------------apod-', url);
-      const response = await fetch(url);
-      const picture = await response.json();
-      if(picture.status === 'error') throw ({ name: 'FailedPicture' });
-
-      const { copyright, date, explanation, hdurl, title } = picture;
-
-      res.status(200).json({ copyright, date, explanation, hdurl, title })
+      const type = req.type;
+      console.log('--------------apod-', url);
+      if(type === 'object'){
+        const response = await fetch(url);
+        const picture = await response.json();
+        if(picture.status === 'error') throw ({ name: 'FailedPicture' });
+  
+        const { copyright, date, explanation, hdurl, title } = picture;
+  
+        res.status(200).json({ copyright, date, explanation, hdurl, title })
+      }
+      if(type === 'array'){
+        const response = await fetch(url);
+        const pictures = await response.json();
+        if(pictures.status === 'error') throw ({ name: 'FailedPicture' });
+ 
+        pictures.forEach((pict, index) => {
+          pict.id = index + 1;
+          delete pict.media_type
+          delete pict.service_version
+          delete pict.url
+        })
+  
+        res.status(200).json(pictures) // array of object
+      }
 
     } catch (err) {
       console.log(err.message);
