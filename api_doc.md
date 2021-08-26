@@ -90,13 +90,32 @@ _Response (200 - Ok)_
 _Response (401 - Unauthorized)_
 ```
 {
-    "message": "Invalid username and/or password"
+    "message": "Invalid email and/or password"
 }
 ```
 _Response (500 - Internet Server Error)_
 ```
 {
     "message": "Internet server error"
+}
+```
+
+### GET USER PROFILE
+
+```http
+  GET /profile
+```
+_Response (200 - Ok)_
+```
+{
+    "id": 1,
+    "email": "contoh@gmail.com",
+}
+```
+_Response (500 - Internet Server Error)_
+```
+{
+  "message": "Internet server error"
 }
 ```
 
@@ -129,6 +148,17 @@ _Response (200 - Ok)_
     "title": "Simeis 147: Supernova Remnant"
 }
 ```
+[
+    {
+        "id": 1
+        "copyright": "Georges Attard",
+        "date": "2020-12-10",
+        "explanation": "It's easy to get lost following the ... ",
+        "hdurl": <image url>,
+        "title": "Simeis 147: Supernova Remnant"
+    }
+]
+```
 _Response (400 - Bad Request)_
 ```
 {
@@ -153,11 +183,6 @@ _Response (500 - Internet Server Error)_
 ```http
   GET /aneo
 ```
-_Request Header_
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `access_token` | `string` | **Required** |
-
 _Response (200 - Ok)_
 ```
 {
@@ -175,12 +200,6 @@ _Response (400 - Bad Request)_
 ```
 {
     "message": "Failed to get asteroid data"
-}
-```
-_Response (401 - Unauthorized)_
-```
-{
-    "message": "Invalid token"
 }
 ```
 _Response (500 - Internet Server Error)_
@@ -210,10 +229,8 @@ _Response (200 - Ok)_
 ```
 [
     {
-        "source": {
-            "id": null,
-            "name": "Adweek"
-        },
+        "id": 1
+        "source":  "Adweek"
         "author": "David Kaplan",
         "title": "Stella Artois’ Solstice Celebration Shows ... ",
         "description": "Publishers' live event organizers have ... ",
