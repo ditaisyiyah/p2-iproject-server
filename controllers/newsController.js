@@ -21,7 +21,7 @@ class newsController{
       res.status(200).json(news.articles)
 
     } catch (err) {
-      // console.log(err.message);
+      console.log(err.message);
       next(err)
     }
   }

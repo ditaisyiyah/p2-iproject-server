@@ -13,24 +13,25 @@ class nasaController{
         if(picture.status === 'error') throw ({ name: 'FailedPicture' });
   
         const { copyright, date, explanation, hdurl, title } = picture;
-  
+        console.log('---apod today----');
         res.status(200).json({ copyright, date, explanation, hdurl, title })
       }
       if(type === 'array'){
         const response = await fetch(url);
         const pictures = await response.json();
         if(pictures.status === 'error') throw ({ name: 'FailedPicture' });
- 
-        pictures.forEach((pict, index) => {
+        
+        pictures.reverse().forEach((pict, index) => {
           pict.id = index + 1;
           delete pict.media_type
           delete pict.service_version
           delete pict.url
         })
-  
-        res.status(200).json(pictures) // array of object
+        console.log('---apod week----');
+        
+        res.status(200).json(pictures)
       }
-
+      
     } catch (err) {
       console.log(err.message);
       next(err);
@@ -40,7 +41,7 @@ class nasaController{
   static async fetchAsteroid(req, res, next){
     try {
       const url = req.url;
-      // console.log('--------------aneo-', url);
+      console.log('--------------aneo-', url);
       const todayDate = req.todayDate;
       const response = await fetch(url);
       const asteroids = await response.json();

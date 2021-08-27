@@ -7,7 +7,8 @@ const { User } = require('../models');
 class userController{
   static async register(req, res, next){
     try {
-      const { email, password } = req.body;
+      const { email, password, asteroid } = req.body;
+      console.log('--------------resgist controller', req.body);
       const isAlreadyRegistered = await User.findOne({ where: { email } })
       if(isAlreadyRegistered) throw ({ name: 'AlreadyRegistered' })
 
@@ -19,15 +20,12 @@ class userController{
         password: user.password 
       });
 
-      console.log('---------asteroid siap dikirim ke email user', asteroid);
+      console.log('----register-----asteroid siap dikirim ke email user', asteroid);
       const payload = { email: user.email, asteroid }
       const message = getMessage(payload)
 
       transporter.sendMail(message, (err, info) => {
-        // console.log('----------err send email', err, info);
-        if(err) {
-          throw ({ name: 'FailedSendEmail' }) // TODO cari library utk auth email
-        }
+        console.log('----------status send email', err, info);
       });
 
       res.status(201).json({ access_token });
@@ -52,15 +50,12 @@ class userController{
         password: user.password 
       });
 
-      console.log('---------asteroid siap dikirim ke email user', asteroid);
+      console.log('----login-----asteroid siap dikirim ke email user', asteroid);
       const payload = { email: user.email, asteroid }
       const message = getMessage(payload)
 
       transporter.sendMail(message, (err, info) => {
-        // console.log('----------err send email', err, info);
-        if(err) {
-          throw ({ name: 'FailedSendEmail' }) // TODO cari library utk auth email
-        }
+        console.log('----------status send email', err, info);
       });
       
       res.status(200).json({ access_token });
@@ -70,15 +65,7 @@ class userController{
       next(err)
     }
   }
-
-  static async getProfile(req, res, next){
-    try {
-      const { id, email } = req.user;
-      res.status(200).json({ id, email });
-    } catch (err) {
-      next(err);
-    }
-  }
+  
 }
 
 module.exports = userController;

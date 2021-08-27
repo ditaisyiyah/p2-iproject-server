@@ -50,11 +50,6 @@ _Response (400 - Bad Request)_
 ```
 ```
 {
-    "message": "Email is invalid/inactive",
-}
-```
-```
-{
     "message": "Password is required",
 }
 ```
@@ -97,25 +92,6 @@ _Response (500 - Internet Server Error)_
 ```
 {
     "message": "Internet server error"
-}
-```
-
-### GET USER PROFILE
-
-```http
-  GET /profile
-```
-_Response (200 - Ok)_
-```
-{
-    "id": 1,
-    "email": "contoh@gmail.com",
-}
-```
-_Response (500 - Internet Server Error)_
-```
-{
-  "message": "Internet server error"
 }
 ```
 

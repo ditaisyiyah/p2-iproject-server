@@ -27,10 +27,6 @@ function errorHandler(err, req, res, next) {
       code = 400;
       message = 'Failed to get news data';
       break;
-    case 'FailedSendEmail':
-      code = 400;
-      message = 'Ensure Your Email Is Valid/Active';
-      break;
     case 'InvalidToken':
       code = 401;
       message = 'Invalid token';
@@ -41,7 +37,7 @@ function errorHandler(err, req, res, next) {
       break;
     default:
       code = 500;
-      message = 'Internal server error';
+      message = err.message;
       break;
   }
 

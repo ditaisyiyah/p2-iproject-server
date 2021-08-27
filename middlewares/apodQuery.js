@@ -8,6 +8,7 @@ const nasaAPIKey = process.env.NASA_API_KEY;
 
 function apodQuery(req, res, next) {
   try {
+    console.log('-------apod query-----', req.query);
     let { date, start_date } = req.query;
     
     let query = '';
@@ -20,7 +21,7 @@ function apodQuery(req, res, next) {
       query += `&start_date=${start_date}`;
       req.type = 'array'
     }
-
+    
     req.url = (`${apodURL}${nasaAPIKey}${query}`);
     
     next();

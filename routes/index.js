@@ -14,7 +14,6 @@ router.get('/aneo', aneoQuery, nasaController.fetchAsteroid);
 
 router.use(authentication);
 
-router.get('/profile', userController.getProfile);
 router.get('/apod', apodQuery, nasaController.fetchPicture);
 router.get('/news', newsQuery, newsController.fetchNews);
 
