@@ -8,7 +8,7 @@ function getMessage(payload){
     html: `
       <p>There are <b>${count} asteroids</b> close approach you in total</p>
       <p>The closest one is named <b>${name}</b>, at distance <b>${distance.toFixed(4)} Astronomical Unit</b></p>
-      <p>It close approach at <b>${closestAt}</b></p>
+      <p>It close approaches at <b>${closestAt}</b></p>
       <p>Its velocity is <b>${Number(velocity).toFixed(4)} kilometers per hour</b></p>
       <p>It is estimated having diameter <b>${diameter.toFixed(4)} kilometers</b></p>
       <p>This asteroid is <b>${isHazardous? '': 'not'} hazardous</b></p>
